@@ -1,12 +1,5 @@
 <template>
-  <div id="app">
-    <header>
-      <span>Configurator</span>
-    </header>
-    <main>
-      <router-view></router-view>
-    </main>
-  </div>
+  <router-view></router-view>
 </template>
 
 <script>

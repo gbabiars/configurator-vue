@@ -1,6 +1,11 @@
 <template>
-  <div>
-    <h3>{{model.title}}</h3>
+  <div id="app">
+    <header>
+      <span>{{model.title}}</span>
+    </header>
+    <main>
+      <router-view></router-view>
+    </main>
   </div>
 </template>
 
@@ -25,16 +30,19 @@ function fetchConfig({ brand, year, carline, model }) {
 export default {
   data() {
     return {
-      model: {}
+      model: {},
+      config: {}
     }
   },
   created() {
-    const params = this.$route.params;
-    fetchModel(params).then(data => {
-      this.model = data;
-    })
-    fetchConfig(params).then(data => {
-      this.config = data;
+    const params = this.$route.params
+    const promises = [
+      fetchModel(params),
+      fetchConfig(params)
+    ]
+    Promise.all(promises).then(([model, config]) => {
+      this.model = model
+      this.config = config
     })
   }
 }
