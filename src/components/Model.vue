@@ -3,7 +3,7 @@
     <header>
       <span>{{model.title}}</span>
     </header>
-    <main>
+    <main v-if="isLoaded">
       <router-view></router-view>
     </main>
   </div>
@@ -14,14 +14,18 @@ import { mapActions, mapState } from 'vuex';
 
 export default {
   data() {
-    return {}
+    return {
+      isLoaded: false
+    }
   },
   computed: mapState({
     model: state => state.model,
     config: state => state.config
   }),
   created() {
-    this.fetch(this.$route.params)
+    this.fetch(this.$route.params).then(_ => {
+      this.isLoaded = true
+    })
   },
   methods: {
     ...mapActions({
