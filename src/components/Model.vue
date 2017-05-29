@@ -10,39 +10,22 @@
 </template>
 
 <script>
-function fetchModel({ brand, year, carline, model }) {
-  return fetch(`/byo-vc/api/v2/bodystyle/resources/en/US/${brand}/${carline}/${year}/${model}`)
-    .then(res => res.json())
-    .then(data => {
-      return {
-        title: data.bodyStyleTitle,
-        vehicleType: data.featureGroup
-      }
-    })
-}
-
-function fetchConfig({ brand, year, carline, model }) {
-  return fetch(`/byo-vc/services/fullyConfigured/US/en/${brand}/${year}/${carline}/${model}`)
-    .then(res => res.json())
-    .then(data => data)
-}
+import { mapActions, mapState } from 'vuex';
 
 export default {
   data() {
-    return {
-      model: {},
-      config: {}
-    }
+    return {}
   },
+  computed: mapState({
+    model: state => state.model,
+    config: state => state.config
+  }),
   created() {
-    const params = this.$route.params
-    const promises = [
-      fetchModel(params),
-      fetchConfig(params)
-    ]
-    Promise.all(promises).then(([model, config]) => {
-      this.model = model
-      this.config = config
+    this.fetch(this.$route.params)
+  },
+  methods: {
+    ...mapActions({
+      fetch: 'fetchInitial'
     })
   }
 }
