@@ -1,3 +1,5 @@
+import { normalizeFullConfig } from './normalize';
+
 export function fetchModel({ brand, year, carline, model }) {
   return fetch(`/byo-vc/api/v2/bodystyle/resources/en/US/${brand}/${carline}/${year}/${model}`)
     .then(res => res.json())
@@ -13,5 +15,5 @@ export function fetchModel({ brand, year, carline, model }) {
 export function fetchConfig({ brand, year, carline, model }) {
   return fetch(`/byo-vc/services/fullyConfigured/US/en/${brand}/${year}/${carline}/${model}`)
     .then(res => res.json())
-    .then(data => data)
+    .then(data => normalizeFullConfig(data))
 }

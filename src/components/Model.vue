@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
+  <div id="app" v-if="isLoaded">
     <header>
-      <span>{{model.title}}</span>
+      <span>{{model.title}} {{config.msrp.total}}</span>
     </header>
-    <main v-if="isLoaded">
+    <main>
       <router-view></router-view>
     </main>
   </div>
