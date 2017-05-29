@@ -4,6 +4,7 @@ import Model from '@/components/Model'
 import ModelIndex from '@/components/ModelIndex'
 import Config from '@/components/Config'
 import Trims from '@/components/Trims'
+import Colors from '@/components/Colors'
 
 Vue.use(Router)
 
@@ -25,6 +26,10 @@ export default new Router({
         {
           path: 'trim',
           component: Trims
+        },
+        {
+          path: 'color',
+          component: Colors
         }
       ]
     }

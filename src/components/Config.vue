@@ -33,12 +33,9 @@ import { mapState } from 'vuex';
 
 export default {
   computed: mapState({
-    bodyTypes: ({ config: { lists, entities } }) =>
-      lists.bodyTypes.map(id => entities.bodyTypes[id]),
-    driveTypes: ({ config: { lists, entities } }) =>
-      lists.driveTypes.map(id => entities.driveTypes[id]),
-    engines: ({ config: { lists, entities } }) =>
-      lists.engines.map(id => entities.engines[id])
+    bodyTypes: state => state.config.lists.bodyTypes,
+    driveTypes: state => state.config.lists.driveTypes,
+    engines: state => state.config.lists.engines
   })
 }
 </script>

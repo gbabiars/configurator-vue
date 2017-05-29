@@ -34,12 +34,9 @@ import { mapState } from 'vuex';
 export default {
   computed: mapState({
     isStylesOnly: state => state.model.steps[0].id !== 'config',
-    styles: ({ config: { lists, entities } }) =>
-      lists.styles.map(id => entities.styles[id]),
-    driveTypes: ({ config: { lists, entities } }) =>
-      lists.driveTypes.map(id => entities.driveTypes[id]),
-    engines: ({ config: { lists, entities } }) =>
-      lists.engines.map(id => entities.engines[id])
+    styles: state => state.config.lists.styles,
+    driveTypes: state => state.config.lists.driveTypes,
+    engines: state => state.config.lists.engines
   })
 }
 </script>
