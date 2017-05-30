@@ -1,15 +1,41 @@
 <template>
   <div>
     <h3>Colors</h3>
+    <section>
+      <h4>Exterior ({{exteriorCount}})</h4>
+      <ul v-for="group in exterior">
+        <li>
+          <span>{{group.id}}</span>
+        </li>
+        <li v-for="option in group.options">
+          <span v-html="option.description"></span>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h4>Interior ({{interiorCount}})</h4>
+      <ul v-for="group in interior">
+        <li>
+          <span>{{group.id}}</span>
+        </li>
+        <li v-for="option in group.options">
+          <span v-html="option.description"></span>
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import flatMap from 'lodash/flatMap';
 
 export default {
   computed: mapState({
-
+    interior: state => state.config.lists.interiorColors,
+    exterior: state => state.config.lists.exteriorColors,
+    interiorCount: state => flatMap(state.config.lists.interiorColors, 'options').length,
+    exteriorCount: state => flatMap(state.config.lists.exteriorColors, 'options').length
   })
 }
 </script>
