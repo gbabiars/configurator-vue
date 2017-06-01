@@ -9,6 +9,7 @@ import Packages from '@/components/Packages'
 import Exterior from '@/components/Exterior'
 import Interior from '@/components/Interior'
 import Accessories from '@/components/Accessories'
+import Summary from '@/components/Summary'
 
 Vue.use(Router)
 
@@ -50,6 +51,10 @@ export default new Router({
         {
           path: 'accessories',
           component: Accessories
+        },
+        {
+          path: 'summary',
+          component: Summary
         }
       ]
     }

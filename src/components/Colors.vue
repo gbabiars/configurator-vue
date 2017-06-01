@@ -28,14 +28,13 @@
 
 <script>
 import { mapState } from 'vuex';
-import flatMap from 'lodash/flatMap';
 
 export default {
   computed: mapState({
     interior: state => state.config.lists.interiorColors,
     exterior: state => state.config.lists.exteriorColors,
-    interiorCount: state => flatMap(state.config.lists.interiorColors, 'options').length,
-    exteriorCount: state => flatMap(state.config.lists.exteriorColors, 'options').length
+    interiorCount: state => Object.keys(state.config.entities.interiorColors).length,
+    exteriorCount: state => Object.keys(state.config.entities.exteriorColors).length
   })
 }
 </script>

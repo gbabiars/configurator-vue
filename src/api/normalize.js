@@ -23,14 +23,14 @@ function normalizeMsrp(data) {
   }
 }
 
-function reduceToHash(arr) {
+function reduceToHash(arr = []) {
   return arr.reduce((hash, x) => {
     hash[x.id] = x;
     return hash
   }, {})
 }
 
-function findSelectedId(arr) {
+function findSelectedId(arr = []) {
   return first(arr.filter(x => x.selected).map(x => x.id))
 }
 
@@ -70,6 +70,8 @@ export function normalizeFullConfig(data) {
       driveType: findSelectedId(model.driveTypes),
       engine: findSelectedId(model.engine),
       style: findSelectedId(model.styleInformation),
+      axleRatio: findSelectedId(model.axleRatio),
+      transmission: findSelectedId(model.transmission),
       interiorColor: findSelectedId(flatMap(colors.interior, 'items')),
       exteriorColor: findSelectedId(flatMap(colors.exterior, 'items'))
     },

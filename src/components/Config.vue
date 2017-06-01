@@ -10,7 +10,7 @@
       </ul>
     </section>
     <section>
-      <h4>Body Type ({{driveTypes.length}})</h4>
+      <h4>Drive Type ({{driveTypes.length}})</h4>
       <ul>
         <li v-for="driveType in driveTypes">
           {{driveType.id}}
@@ -18,7 +18,7 @@
       </ul>
     </section>
     <section>
-      <h4>Body Type ({{engines.length}})</h4>
+      <h4>Engine ({{engines.length}})</h4>
       <ul>
         <li v-for="engine in engines">
           <span v-html="engine.description"></span>
