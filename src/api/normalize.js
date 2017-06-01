@@ -40,6 +40,7 @@ export function normalizeFullConfig(data) {
   const colors = config.OPTIONS.COLOR;
   const exterior = config.OPTIONS.EXTERIOR;
   const interior = config.OPTIONS.INTERIOR;
+  const accessories = config.ACCESSORIES;
 
   return {
     ss: decodeURIComponent(config['SERIALIZED-STATE']),
@@ -58,6 +59,10 @@ export function normalizeFullConfig(data) {
       interior: Object.keys(interior)
         .map(key =>
           ({ id: key.replace('interior.', ''), options: interior[key] })
+        ),
+      accessories: Object.keys(accessories)
+        .map(key =>
+          ({ id: key, options: accessories[key] })
         )
     },
     selections: {

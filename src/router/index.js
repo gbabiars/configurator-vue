@@ -5,8 +5,10 @@ import ModelIndex from '@/components/ModelIndex'
 import Config from '@/components/Config'
 import Trims from '@/components/Trims'
 import Colors from '@/components/Colors'
+import Packages from '@/components/Packages'
 import Exterior from '@/components/Exterior'
 import Interior from '@/components/Interior'
+import Accessories from '@/components/Accessories'
 
 Vue.use(Router)
 
@@ -34,12 +36,20 @@ export default new Router({
           component: Colors
         },
         {
+          path: 'packages',
+          component: Packages
+        },
+        {
           path: 'exterior',
           component: Exterior
         },
         {
           path: 'interior',
           component: Interior
+        },
+        {
+          path: 'accessories',
+          component: Accessories
         }
       ]
     }
