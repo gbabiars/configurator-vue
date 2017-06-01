@@ -2,6 +2,7 @@
   <div id="app" v-if="isLoaded">
     <header>
       <span>{{model.title}} {{config.msrp.total}}</span>
+      <x-nav :steps="model.steps"></x-nav>
     </header>
     <main>
       <router-view></router-view>
@@ -11,6 +12,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
+import Nav from './Nav.vue'
 
 export default {
   data() {
@@ -31,6 +33,9 @@ export default {
     ...mapActions({
       fetch: 'fetchInitial'
     })
+  },
+  components: {
+    'x-nav': Nav
   }
 }
 </script>
