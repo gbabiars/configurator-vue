@@ -38,6 +38,7 @@ export function normalizeFullConfig(data) {
   const { modelMatrix: model, config } = data;
 
   const colors = config.OPTIONS.COLOR;
+  const exterior = config.OPTIONS.EXTERIOR;
 
   return {
     ss: decodeURIComponent(config['SERIALIZED-STATE']),
@@ -48,7 +49,11 @@ export function normalizeFullConfig(data) {
       engines: model.engine,
       styles: model.styleInformation,
       interiorColors: colors.interior.map(({ header: id, items }) => ({ id, options: items })),
-      exteriorColors: colors.exterior.map(({ header: id, items }) => ({ id, options: items }))
+      exteriorColors: colors.exterior.map(({ header: id, items }) => ({ id, options: items })),
+      exterior: Object.keys(exterior)
+        .map(key =>
+          ({ id: key.replace('exterior.', ''), options: exterior[key] })
+        )
     },
     selections: {
       bodyType: findSelectedId(model.bodyTypes),
