@@ -6,6 +6,7 @@ import Config from '@/components/Config'
 import Trims from '@/components/Trims'
 import Colors from '@/components/Colors'
 import Exterior from '@/components/Exterior'
+import Interior from '@/components/Interior'
 
 Vue.use(Router)
 
@@ -35,6 +36,10 @@ export default new Router({
         {
           path: 'exterior',
           component: Exterior
+        },
+        {
+          path: 'interior',
+          component: Interior
         }
       ]
     }
