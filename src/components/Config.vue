@@ -20,9 +20,8 @@
     <section>
       <h4>Engine ({{engines.length}})</h4>
       <ul>
-        <li v-for="engine in engines">
-          <span v-html="engine.description"></span>
-        </li>
+        <list-option v-for="engine in engines" :key="engine.id" :option="engine">
+        </list-option>
       </ul>
     </section>
   </div>
@@ -30,13 +29,17 @@
 
 <script>
 import { mapState } from 'vuex';
+import ListOption from './ListOption.vue';
 
 export default {
   computed: mapState({
     bodyTypes: state => state.config.lists.bodyTypes,
     driveTypes: state => state.config.lists.driveTypes,
     engines: state => state.config.lists.engines
-  })
+  }),
+  components: {
+    'list-option': ListOption
+  }
 }
 </script>
 

@@ -7,9 +7,8 @@
         <li>
           <span>{{group.id}}</span>
         </li>
-        <li v-for="option in group.options">
-          <span v-html="option.description"></span>
-        </li>
+        <list-option v-for="option in group.options" :key="option.id" :option="option">
+        </list-option>
       </ul>
     </section>
     <section>
@@ -18,9 +17,8 @@
         <li>
           <span>{{group.id}}</span>
         </li>
-        <li v-for="option in group.options">
-          <span v-html="option.description"></span>
-        </li>
+        <list-option v-for="option in group.options" :key="option.id" :option="option">
+        </list-option>
       </ul>
     </section>
   </div>
@@ -28,6 +26,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import ListOption from './ListOption.vue';
 
 export default {
   computed: mapState({
@@ -35,7 +34,10 @@ export default {
     exterior: state => state.config.lists.exteriorColors,
     interiorCount: state => Object.keys(state.config.entities.interiorColors).length,
     exteriorCount: state => Object.keys(state.config.entities.exteriorColors).length
-  })
+  }),
+  components: {
+    'list-option': ListOption
+  }
 }
 </script>
 

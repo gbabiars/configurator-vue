@@ -20,9 +20,8 @@
     <section v-if="isStylesOnly">
       <h4>Body Type ({{engines.length}})</h4>
       <ul>
-        <li v-for="engine in engines">
-          <span v-html="engine.description"></span>
-        </li>
+        <list-option v-for="engine in engines" :key="engine.id" :option="engine">
+        </list-option>
       </ul>
     </section>
   </div>
@@ -30,6 +29,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import ListOption from './ListOption.vue';
 
 export default {
   computed: mapState({
@@ -37,7 +37,10 @@ export default {
     styles: state => state.config.lists.styles,
     driveTypes: state => state.config.lists.driveTypes,
     engines: state => state.config.lists.engines
-  })
+  }),
+  components: {
+    'list-option': ListOption
+  }
 }
 </script>
 
