@@ -4,6 +4,12 @@ import { fetchModel, fetchConfig, fetchConfigWithParams, fetchConfigWithToggledO
 
 Vue.use(Vuex)
 
+const saveStateToLocalStorage = params => config => {
+  const { brand, year, carline, model } = params;
+  localStorage.setItem(`${brand}.${year}.${carline}.${model}.ss`, config.ss);
+  return config;
+};
+
 export default new Vuex.Store({
   state: {
     config: {},
@@ -29,7 +35,7 @@ export default new Vuex.Store({
       const params = state.route.params;
       const promises = [
         fetchModel(params),
-        fetchConfig(params)
+        fetchConfig(params).then(saveStateToLocalStorage(params))
       ]
       return Promise.all(promises).then(([model, config]) =>
         commit('fetchInitialSuccess', { model, config }))
@@ -37,8 +43,7 @@ export default new Vuex.Store({
     updateConfig({ state, commit }, options) {
       const { brand, year, carline, model } = state.route.params;
       const { style, driveType, bodyType, engine, transmission, axleRatio } = state.config.selections;
-
-      return fetchConfigWithParams({
+      const apiParams = {
         brand,
         year,
         carline,
@@ -50,7 +55,10 @@ export default new Vuex.Store({
         transmission,
         axleRatio,
         ...options
-      }).then(config => commit('updateConfigSuccess', { config }));
+      };
+      return fetchConfigWithParams(apiParams)
+        .then(saveStateToLocalStorage(state.route.params))
+        .then(config => commit('updateConfigSuccess', { config }));
     },
     updateWithOption({ state, commit }, option) {
       const { brand, year, carline, model } = state.route.params;
@@ -58,6 +66,7 @@ export default new Vuex.Store({
       const { ss } = state.config;
 
       return fetchConfigWithToggledOption({ brand, year, carline, model, style, ss },  option)
+        .then(saveStateToLocalStorage(state.route.params))
         .then(config => commit('updateWithOptionSuccess', { config }));
     }
   }
