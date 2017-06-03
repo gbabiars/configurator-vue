@@ -1,11 +1,21 @@
 <template>
-  <div class="checkbox" role="checkbox" :aria-checked="checked ? 'true' : 'false'" tabindex="0" @click="onChange">
+  <div class="checkbox"
+       role="checkbox"
+       tabindex="0"
+       :aria-checked="option.selected ? 'true' : 'false'"
+       :class="{ 'checkbox--conflict': option.conflict }"
+       @click="onOptionChange">
   </div>
 </template>
 
 <script>
   export default {
-    props: ['checked', 'onChange']
+    props: ['option', 'onChange'],
+    methods: {
+      onOptionChange() {
+        this.onChange(this.option);
+      }
+    }
   }
 </script>
 
@@ -19,5 +29,8 @@
   }
   .checkbox[aria-checked="true"] {
     background: #cccccc;
+  }
+  .checkbox--conflict {
+    border-color: #ff0000;
   }
 </style>

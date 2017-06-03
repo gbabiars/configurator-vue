@@ -1,6 +1,6 @@
 <template>
   <li>
-    <option-checkbox :checked="option.selected" :on-change="onOptionChange"></option-checkbox>
+    <option-checkbox :option="option" :on-change="onChange"></option-checkbox>
     <span v-html="option.description"></span>
   </li>
 </template>
@@ -12,11 +12,6 @@
     props: ['option', 'onChange'],
     components: {
       'option-checkbox': Checkbox
-    },
-    methods: {
-      onOptionChange() {
-        this.onChange(this.option);
-      }
     }
   }
 </script>
