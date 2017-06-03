@@ -37,8 +37,8 @@ export default new Vuex.Store({
         fetchModel(params),
         fetchConfig(params).then(saveStateToLocalStorage(params))
       ]
-      return Promise.all(promises).then(([model, config]) =>
-        commit('fetchInitialSuccess', { model, config }))
+      return Promise.all(promises)
+        .then(([model, config]) => commit('fetchInitialSuccess', { model, config }))
     },
     updateConfig({ state, commit }, options) {
       const { brand, year, carline, model } = state.route.params;
