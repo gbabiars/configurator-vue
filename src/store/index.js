@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { fetchModel, fetchConfig } from '../api/index'
+import { fetchModel, fetchConfig, fetchConfigWithParams } from '../api/index'
 
 Vue.use(Vuex)
 
@@ -16,6 +16,9 @@ export default new Vuex.Store({
     fetchInitialSuccess(state, { model, config }) {
       state.model = model;
       state.config = config;
+    },
+    updateConfigSuccess(state, { config }) {
+      state.config = config;
     }
   },
   actions: {
@@ -26,6 +29,24 @@ export default new Vuex.Store({
       ]
       return Promise.all(promises).then(([model, config]) =>
         commit('fetchInitialSuccess', { model, config }))
+    },
+    updateConfig({ state, commit }, options) {
+      const { brand, year, carline, model } = state.route.params;
+      const { style, driveType, bodyType, engine, transmission, axleRatio } = state.config.selections;
+
+      return fetchConfigWithParams({
+        brand,
+        year,
+        carline,
+        model,
+        style,
+        driveType,
+        bodyType,
+        engine,
+        transmission,
+        axleRatio,
+        ...options
+      }).then(config => commit('updateConfigSuccess', { config }));
     }
   }
 })

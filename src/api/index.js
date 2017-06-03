@@ -17,3 +17,17 @@ export function fetchConfig({ brand, year, carline, model }) {
     .then(res => res.json())
     .then(data => normalizeFullConfig(data))
 }
+
+export function fetchConfigWithParams(options) {
+  const { brand, year, carline, model, style, driveType, bodyType, engine, transmission, axleRatio } = options;
+
+  const query = { styleId: style, driveType, bodyTypeId: bodyType, engine, transmission, axleRatio };
+  const queryString = Object.keys(query)
+    .filter(key => query[key] !== undefined)
+    .map(key => `${key}=${query[key]}`)
+    .join('&');
+
+  return fetch(`/byo-vc/services/fullyConfigured/US/en/${brand}/${year}/${carline}/${model}?${queryString}`)
+    .then(res => res.json())
+    .then(data => normalizeFullConfig(data))
+}

@@ -20,7 +20,7 @@
     <section>
       <h4>Engine ({{engines.length}})</h4>
       <ul>
-        <list-option v-for="engine in engines" :key="engine.id" :option="engine">
+        <list-option v-for="engine in engines" :key="engine.id" :option="engine" :on-change="onEngineChange">
         </list-option>
       </ul>
     </section>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import ListOption from './ListOption.vue';
 
 export default {
@@ -39,6 +39,14 @@ export default {
   }),
   components: {
     'list-option': ListOption
+  },
+  methods: {
+    ...mapActions({
+      update: 'updateConfig'
+    }),
+    onEngineChange(option) {
+      this.update({ engine: option.id });
+    }
   }
 }
 </script>

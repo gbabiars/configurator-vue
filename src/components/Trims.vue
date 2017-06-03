@@ -20,7 +20,7 @@
     <section v-if="isStylesOnly">
       <h4>Body Type ({{engines.length}})</h4>
       <ul>
-        <list-option v-for="engine in engines" :key="engine.id" :option="engine">
+        <list-option v-for="engine in engines" :key="engine.id" :option="engine" :on-change="onEngineChange">
         </list-option>
       </ul>
     </section>
@@ -40,6 +40,11 @@ export default {
   }),
   components: {
     'list-option': ListOption
+  },
+  methods: {
+    onEngineChange() {
+      console.log('engine');
+    }
   }
 }
 </script>
