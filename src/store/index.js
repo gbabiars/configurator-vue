@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { fetchModel, fetchConfig, fetchConfigWithParams } from '../api/index'
+import { fetchModel, fetchConfig, fetchConfigWithParams, fetchConfigWithToggledOption } from '../api/index'
 
 Vue.use(Vuex)
 
@@ -19,10 +19,14 @@ export default new Vuex.Store({
     },
     updateConfigSuccess(state, { config }) {
       state.config = config;
+    },
+    updateWithOptionSuccess(state, { config }) {
+      state.config = config;
     }
   },
   actions: {
-    fetchInitial({ commit }, params) {
+    fetchInitial({ state, commit }) {
+      const params = state.route.params;
       const promises = [
         fetchModel(params),
         fetchConfig(params)
@@ -47,6 +51,14 @@ export default new Vuex.Store({
         axleRatio,
         ...options
       }).then(config => commit('updateConfigSuccess', { config }));
+    },
+    updateWithOption({ state, commit }, option) {
+      const { brand, year, carline, model } = state.route.params;
+      const { style } = state.config.selections;
+      const { ss } = state.config;
+
+      return fetchConfigWithToggledOption({ brand, year, carline, model, style, ss },  option)
+        .then(config => commit('updateWithOptionSuccess', { config }));
     }
   }
 })

@@ -35,6 +35,10 @@ module.exports = {
       '/byo-vc/services/fullyConfigured/US/en/chevrolet': {
         target: 'http://www.chevrolet.com',
         changeOrigin: true
+      },
+      '/byo-vc/services/toggleOptionData/chevrolet': {
+        target: 'http://www.chevrolet.com',
+        changeOrigin: true
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

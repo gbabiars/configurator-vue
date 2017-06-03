@@ -25,7 +25,7 @@ export default {
     config: state => state.config
   }),
   created() {
-    this.fetch(this.$route.params).then(_ => {
+    this.fetch().then(_ => {
       this.isLoaded = true
     })
   },

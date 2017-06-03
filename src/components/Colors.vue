@@ -7,7 +7,7 @@
         <li>
           <span>{{group.id}}</span>
         </li>
-        <list-option v-for="option in group.options" :key="option.id" :option="option">
+        <list-option v-for="option in group.options" :key="option.id" :option="option" :on-change="update">
         </list-option>
       </ul>
     </section>
@@ -17,7 +17,7 @@
         <li>
           <span>{{group.id}}</span>
         </li>
-        <list-option v-for="option in group.options" :key="option.id" :option="option">
+        <list-option v-for="option in group.options" :key="option.id" :option="option" :on-change="update">
         </list-option>
       </ul>
     </section>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import ListOption from './ListOption.vue';
 
 export default {
@@ -37,6 +37,11 @@ export default {
   }),
   components: {
     'list-option': ListOption
+  },
+  methods: {
+    ...mapActions({
+      update: 'updateWithOption'
+    })
   }
 }
 </script>
