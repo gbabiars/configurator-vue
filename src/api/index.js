@@ -35,6 +35,9 @@ export function fetchConfigWithState({ brand, year, carline, model, style, ss })
 
   return fetch(url, {
     method: 'POST',
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    }),
     body: JSON.stringify({
       ss
     })
