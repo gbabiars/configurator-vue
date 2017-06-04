@@ -5,6 +5,9 @@
       <x-nav :steps="model.steps"></x-nav>
     </header>
     <main>
+      <aside>
+        <cgi-image></cgi-image>
+      </aside>
       <router-view></router-view>
     </main>
   </div>
@@ -13,6 +16,7 @@
 <script>
 import { mapActions, mapState } from 'vuex';
 import Nav from './Nav.vue'
+import CgiImage from './CgiImage.vue';
 
 export default {
   data() {
@@ -35,7 +39,8 @@ export default {
     })
   },
   components: {
-    'x-nav': Nav
+    'x-nav': Nav,
+    'cgi-image': CgiImage
   }
 }
 </script>

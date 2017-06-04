@@ -45,6 +45,7 @@ export function normalizeFullConfig(data) {
   return {
     ss: decodeURIComponent(config['SERIALIZED-STATE']),
     msrp: normalizeMsrp(config.VEHICLE.MSRP),
+    rpos: config.VEHICLE.SELECTED_RPO_LIST,
     lists: {
       bodyTypes: model.bodyTypes,
       driveTypes: model.driveTypes,
