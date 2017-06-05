@@ -6,7 +6,8 @@
     </header>
     <main>
       <aside>
-        <cgi-image></cgi-image>
+        <cgi-exterior-image></cgi-exterior-image>
+        <cgi-interior-image></cgi-interior-image>
       </aside>
       <router-view></router-view>
     </main>
@@ -16,7 +17,8 @@
 <script>
 import { mapActions, mapState } from 'vuex';
 import Nav from './Nav.vue'
-import CgiImage from './CgiImage.vue';
+import CgiExteriorImage from './CgiExteriorImage.vue';
+import CgiInteriorImage from './CgiInteriorImage.vue';
 
 export default {
   data() {
@@ -40,7 +42,8 @@ export default {
   },
   components: {
     'x-nav': Nav,
-    'cgi-image': CgiImage
+    'cgi-exterior-image': CgiExteriorImage,
+    'cgi-interior-image': CgiInteriorImage
   }
 }
 </script>
