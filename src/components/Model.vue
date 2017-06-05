@@ -4,11 +4,11 @@
       <span>{{model.title}} {{config.msrp.total}}</span>
       <x-nav :steps="model.steps"></x-nav>
     </header>
+    <aside>
+      <cgi-exterior-image></cgi-exterior-image>
+      <cgi-interior-image></cgi-interior-image>
+    </aside>
     <main>
-      <aside>
-        <cgi-exterior-image></cgi-exterior-image>
-        <cgi-interior-image></cgi-interior-image>
-      </aside>
       <router-view></router-view>
     </main>
   </div>
