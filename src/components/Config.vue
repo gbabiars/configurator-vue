@@ -26,6 +26,7 @@
         </list-option>
       </ul>
     </section>
+    <conflict-modal v-if="false"></conflict-modal>
   </div>
 </template>
 
@@ -33,6 +34,7 @@
 import { mapState, mapActions } from 'vuex';
 import ListOption from './ListOption.vue';
 import Checkbox from './Checkbox.vue';
+import ConfigConflictModal from './Modal.vue';
 
 export default {
   computed: mapState({
@@ -42,7 +44,8 @@ export default {
   }),
   components: {
     'list-option': ListOption,
-    'option-checkbox': Checkbox
+    'option-checkbox': Checkbox,
+    'conflict-modal': ConfigConflictModal
   },
   methods: {
     ...mapActions({
