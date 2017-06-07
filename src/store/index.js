@@ -64,7 +64,7 @@ export default new Vuex.Store({
       return Promise.all(promises)
         .then(([model, config]) => commit('fetchInitialSuccess', { model, config }))
     },
-    updateConfig({ state, commit }, options) {
+    updateConfig({ state, commit }, { type, option }) {
       const { brand, year, carline, model } = state.route.params;
       const { style, driveType, bodyType, engine, transmission, axleRatio } = state.config.selections;
       const apiParams = {
@@ -78,7 +78,7 @@ export default new Vuex.Store({
         engine,
         transmission,
         axleRatio,
-        ...options
+        ...{[type]: option.id}
       };
       return fetchConfigWithParams(apiParams)
         .then(saveStateToLocalStorage(state.route.params))

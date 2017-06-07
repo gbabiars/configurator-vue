@@ -50,13 +50,13 @@ export default {
       update: 'updateConfig'
     }),
     onEngineChange(option) {
-      this.update({ engine: option.id });
+      this.update({ type: 'engine', option });
     },
     onStyleChange(option) {
-      this.update({ style: option.id });
+      this.update({ type: 'style', option });
     },
     onDriveTypeChange(option) {
-      this.update({ driveType: option.id });
+      this.update({ type: 'driveType', option });
     }
   }
 }

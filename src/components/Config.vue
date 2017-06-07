@@ -49,13 +49,13 @@ export default {
       update: 'updateConfig'
     }),
     onEngineChange(option) {
-      this.update({ engine: option.id });
+      this.update({ type: 'engine', option });
     },
     onBodyTypeChange(option) {
-      this.update({ bodyType: option.id });
+      this.update({ type: 'bodyType', option });
     },
     onDriveTypeChange(option) {
-      this.update({ driveType: option.id });
+      this.update({ type: 'driveType', option });
     }
   }
 }
