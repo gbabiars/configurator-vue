@@ -7,7 +7,6 @@
   import uniq from 'lodash/uniq';
 
   export default {
-    props: ['type'],
     computed: mapState({
       url: state => {
         const {

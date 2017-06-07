@@ -2,8 +2,8 @@
   <div id="app" v-if="isLoaded">
     <header>
       <span>{{model.title}} {{config.msrp.total}}</span>
-      <x-nav :steps="model.steps"></x-nav>
     </header>
+    <x-nav :steps="model.steps"></x-nav>
     <aside>
       <cgi-exterior-image></cgi-exterior-image>
       <cgi-interior-image></cgi-interior-image>
